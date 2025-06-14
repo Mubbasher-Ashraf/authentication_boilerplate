@@ -1,0 +1,89 @@
+{
+  "name": "express_auth",
+  "version": "1.0.0",
+  "description": "express basic auth with JWT token, database mongodb with structure.",
+  "main": "src/index.mjs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.mjs",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "prepare": "husky",
+    "start:dev": "node --watch src/index.js",
+    "install:globals": "npm i -g pm2 nodemon",
+    "docker:dev": "docker-compose up --build",
+    "pm-dev": "pm2 start ecosystem.config.json --env development",
+    "pm-prod": "pm2 start ecosystem.config.json --env production",
+    "docker:prod": "docker build -t express_production_ready_boilterplate . && docker run -p 4200:4200 express_production_ready_boilterplate",
+    "clean": "rm -rf node_modules | rm -rf package-lock.json | npm i"
+  },
+  "lint-staged": {
+    "*.mjs": [
+      "eslint -- fix .",
+      "prettier -- write ."
+    ]
+  },
+  "keywords": [
+    "auth",
+    "jwt",
+    "authentication",
+    "express",
+    "auth",
+    "template"
+  ],
+  "imports": {
+    "#config/*": "./src/config/*",
+    "#models/*": "./src/models/*",
+    "#services/*": "./src/services/*",
+    "#utils": "./src/utils/index.mjs",
+    "#routes": "./src/routes/index.mjs",
+    "#validations": "./src/validations/index.mjs",
+    "#middlewares": "./src/middlewares/index.mjs",
+    "#controllers": "./src/controllers/index.mjs"
+  },
+  "author": "Mubbasher_Ashraf",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "handlebars": "^4.7.8",
+    "helmet": "^7.1.0",
+    "http-status-codes": "^2.3.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.3",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.14",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pm2": "^5.4.2",
+    "serve-favicon": "^2.5.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "validator": "^13.12.0"
+  },
+  "engines": {
+    "node": ">16",
+    "npm": ">8"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.8.0",
+    "eslint": "^9.5.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.9.0",
+    "husky": "^9.0.11",
+    "loadtest": "^8.0.9",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.2"
+  }
+}

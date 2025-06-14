@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "baseUrl": "./src",
+    "paths": {
+      "#utils/*": ["#utils/*"],
+      "#routes/*": ["#routes/*"],
+      "#config/*": ["#config/*"],
+      "#models/*": ["#models/*"],
+      "#services/*": ["#services/*"],
+      "#validations/*": ["#validations/*"],
+      "#controllers/*": ["#controllers/*"],
+      "#middlewares/*": ["#middlewares/*"]
+    }
+  },
+  "include": ["src/**/**/**/*"]
+}
