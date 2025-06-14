@@ -1,0 +1,49 @@
+services:
+  app:
+    container_name: express_production_ready_boilterplate
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/usr/src/node-app
+      - /usr/src/node-app/node_modules
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DB_NAME=${MONGO_DB_URI}
+      - SERVER_PORT=${SERVER_PORT}
+    env_file:
+      - .env
+    networks:
+      - mongo-network
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27018:27017"  # Changed host port to 27018
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mongo-network
+
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: nginx_express_production_ready_boilterplate
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/conf.d/default.conf
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - app
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  mongo-network:
+    driver: bridge
